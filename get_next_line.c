@@ -6,7 +6,7 @@
 /*   By: svrielin <svrielin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 18:26:17 by svrielin      #+#    #+#                 */
-/*   Updated: 2021/10/06 17:33:38 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/02/22 18:36:39 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ char	*create_empty_string(void)
 	return (str);
 }
 
-void	strdelete(char **str, int fd)
+void	strdelete(char *str)
 {
-	free(str[fd]);
-	str[fd] = create_empty_string();
+	free(str);
+	str = NULL;
 }
 
 char	*newline(int fd, char **saved, int bytes_read)
@@ -34,15 +34,13 @@ char	*newline(int fd, char **saved, int bytes_read)
 	char	*line;
 	char	*tmp;
 	int		len;
-
 	if ((ft_strchr(saved[fd], '\n')))
 	{
-		tmp = ft_strdup((ft_strchr(saved[fd], '\n') + 1));
+		tmp = (ft_strchr(saved[fd], '\n') + 1);
 		len = ft_strlen(saved[fd]) - ft_strlen(tmp);
 		line = ft_strndup(saved[fd], len);
-		free (saved[fd]);
+		strdelete(saved[fd]);
 		saved[fd] = ft_strdup(tmp);
-		free (tmp);
 		return (line);
 	}
 	if (bytes_read < BUFFER_SIZE)
@@ -50,7 +48,7 @@ char	*newline(int fd, char **saved, int bytes_read)
 		if (bytes_read == 0 && saved[fd][0] == '\0')
 			return (NULL);
 		line = ft_strdup(saved[fd]);
-		strdelete(saved, fd);
+		strdelete(saved[fd]);
 		return (line);
 	}
 	return (NULL);
@@ -61,14 +59,13 @@ int	readtillnewline(int fd, char **saved)
 	char	*tmp;
 	int		bytes_read;
 	char	buffer[BUFFER_SIZE + 1];
-
 	bytes_read = BUFFER_SIZE;
 	while (!ft_strchr(saved[fd], '\n') && bytes_read == BUFFER_SIZE)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
-			free (saved[fd]);
+			strdelete(saved[fd]);
 			return (0);
 		}
 		buffer[bytes_read] = '\0';
@@ -76,7 +73,7 @@ int	readtillnewline(int fd, char **saved)
 		if (tmp == NULL)
 			return (0);
 		saved[fd] = ft_strdup(tmp);
-		free(tmp);
+		strdelete(tmp);
 	}
 	return (bytes_read);
 }
@@ -86,7 +83,6 @@ char	*get_next_line(int fd)
 	static char	*saved[OPEN_MAX];
 	char		*line;
 	int			bytes_read;
-
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!saved[fd])

@@ -6,7 +6,7 @@
 /*   By: svrielin <svrielin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/16 16:07:06 by svrielin      #+#    #+#                 */
-/*   Updated: 2021/09/23 15:22:07 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/02/22 14:39:50 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! REMOVE STDIO.H !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(char const *string);
@@ -27,5 +29,6 @@ char	*ft_strndup(const char *s1, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_gnlstrjoin(char *s1, char *s2);
 char	*create_empty_string(void);
+void	strdelete(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: svrielin <svrielin@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/17 11:55:20 by svrielin      #+#    #+#                  #
-#    Updated: 2022/02/22 09:49:58 by svrielin      ########   odam.nl          #
+#    Updated: 2022/02/22 12:55:22 by svrielin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+main:
+	cc $(CFLAGS) -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
+
+debugmain:
+	gcc $(CFLAGS) -D BUFFER_SIZE=1 -g get_next_line.c get_next_line_utils.c main.c -o get_next_line_lldb
 # rm -df instead of rmdir, because this doesn't give an error when dir doesn't exist
 # -d: dir, removes empty directories
 # -f: force, ignore nonexistant files

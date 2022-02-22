@@ -6,7 +6,7 @@
 /*   By: svrielin <svrielin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 18:26:03 by svrielin      #+#    #+#                 */
-/*   Updated: 2021/09/22 18:26:04 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/02/22 18:37:00 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 size_t	ft_strlen(char const *s)
 {
 	size_t	i;
-
 	i = 0;
 	while (s[i] != '\0')
 	{
@@ -79,7 +78,6 @@ char	*ft_gnlstrjoin(char *s1, char *s2)
 	char	*joinedstr;
 	int		i;
 	int		j;
-
 	if (!s1 || !s2)
 		return (NULL);
 	i = 0;
@@ -99,6 +97,6 @@ char	*ft_gnlstrjoin(char *s1, char *s2)
 		j++;
 	}
 	joinedstr[i] = '\0';
-	free (s1);
+	strdelete(s1);
 	return (joinedstr);
 }
