@@ -6,7 +6,7 @@
 #    By: svrielin <svrielin@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/17 11:55:20 by svrielin      #+#    #+#                  #
-#    Updated: 2022/02/22 09:42:20 by svrielin      ########   odam.nl          #
+#    Updated: 2022/02/22 09:49:58 by svrielin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC				:=	gcc
 CFLAGS			?=	-Wall -Wextra -Werror
 
 #################################Project_files##################################
-SRC_DIR			:=	./src
+SRC_DIR			:=	.
 SRC_FILES		:=	get_next-line.c get_next_line_utils.c
 OBJ_DIR			:=	./obj
 OBJ_FILES		:=	$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
