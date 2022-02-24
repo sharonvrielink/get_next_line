@@ -6,7 +6,7 @@
 /*   By: svrielin <svrielin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 18:26:03 by svrielin      #+#    #+#                 */
-/*   Updated: 2022/02/22 18:37:00 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/02/24 18:03:27 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ char	*ft_strdup(const char *s1)
 	int		i;
 
 	i = 0;
-	s2 = (char *)malloc(ft_strlen (s1) + 1);
+	if (!s1)
+		return (NULL);
+	s2 = (char *)malloc((ft_strlen (s1) + 1) * sizeof(char));
 	if (!s2)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -47,7 +49,7 @@ char	*ft_strndup(const char *s1, size_t n)
 	size_t	i;
 
 	i = 0;
-	s2 = (char *)malloc(n + 1);
+	s2 = (char *)malloc((n + 1) * sizeof(char));
 	if (!s2)
 		return (NULL);
 	while (i < n)
@@ -82,7 +84,7 @@ char	*ft_gnlstrjoin(char *s1, char *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	joinedstr = (char *)malloc(ft_strlen (s1) + ft_strlen (s2) + 1);
+	joinedstr = (char *)malloc((ft_strlen (s1) + ft_strlen (s2) + 1)* sizeof(char));
 	if (!joinedstr)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -97,6 +99,5 @@ char	*ft_gnlstrjoin(char *s1, char *s2)
 		j++;
 	}
 	joinedstr[i] = '\0';
-	strdelete(s1);
 	return (joinedstr);
 }

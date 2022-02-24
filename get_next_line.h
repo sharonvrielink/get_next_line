@@ -6,14 +6,14 @@
 /*   By: svrielin <svrielin@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/16 16:07:06 by svrielin      #+#    #+#                 */
-/*   Updated: 2022/02/22 14:39:50 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/02/24 20:10:37 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1
 # endif
 # include <stddef.h>
 # include <stdlib.h>
@@ -29,6 +29,6 @@ char	*ft_strndup(const char *s1, size_t n);
 char	*ft_strchr(const char *s, int c);
 char	*ft_gnlstrjoin(char *s1, char *s2);
 char	*create_empty_string(void);
-void	strdelete(char *str);
+char	*strdelete(char *str);
 
 #endif

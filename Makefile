@@ -6,7 +6,7 @@
 #    By: svrielin <svrielin@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/17 11:55:20 by svrielin      #+#    #+#                  #
-#    Updated: 2022/02/22 12:55:22 by svrielin      ########   odam.nl          #
+#    Updated: 2022/02/24 19:50:45 by svrielin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,12 @@ CFLAGS			?=	-Wall -Wextra -Werror
 
 #################################Project_files##################################
 SRC_DIR			:=	.
-SRC_FILES		:=	get_next-line.c get_next_line_utils.c
+SRC_FILES		:=	get_next_line.c get_next_line_utils.c
 OBJ_DIR			:=	./obj
 OBJ_FILES		:=	$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 ifdef DEBUG
-CFLAGS	+=	-g
+CFLAGS	+= -g -fsanitize=address
 NAME = get_next_line_debug
 endif
 
@@ -45,10 +45,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 main:
-	cc $(CFLAGS) -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c
+	cc $(CFLAGS) -D BUFFER_SIZE=1 get_next_line.c get_next_line_utils.c main.c
 
 debugmain:
-	gcc $(CFLAGS) -D BUFFER_SIZE=1 -g get_next_line.c get_next_line_utils.c main.c -o get_next_line_lldb
+	gcc $(CFLAGS) -fsanitize=address -D BUFFER_SIZE=1 -g3 get_next_line.c get_next_line_utils.c main.c -o get_next_line_lldb
 # rm -df instead of rmdir, because this doesn't give an error when dir doesn't exist
 # -d: dir, removes empty directories
 # -f: force, ignore nonexistant files
