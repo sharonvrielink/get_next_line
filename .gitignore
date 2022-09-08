@@ -54,3 +54,4 @@ dkms.conf
 .vscode/
 get_next_line_lldb
 ./a.out
+.DS_Store
