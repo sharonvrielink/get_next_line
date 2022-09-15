@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   get_next_line.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: svrielin <svrielin@student.codam.nl>         +#+                     */
+/*   By: svrielin <svrielin@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 18:26:17 by svrielin      #+#    #+#                 */
-/*   Updated: 2022/02/24 20:16:36 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/09/15 19:30:14 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char *strdelete(char *str)
 	{
 		free(str);
 		str = NULL;
-		// Tip van Peer: teruggeven van 0, en dan saved[fd] = strdelete(saved[fd]);
 	}
 	return (NULL);
 }
@@ -42,7 +41,7 @@ char	*newline(int fd, char **saved, int bytes_read)
 	int		len;
 	if ((ft_strchr(saved[fd], '\n')))
 	{
-		tmp = ft_strdup((ft_strchr(saved[fd], '\n') + 1)); //segfault als temp = 0;
+		tmp = ft_strdup((ft_strchr(saved[fd], '\n') + 1));
 		if (tmp == 0)
 			return (NULL);
 		len = ft_strlen(saved[fd]) - ft_strlen(tmp);
@@ -57,7 +56,7 @@ char	*newline(int fd, char **saved, int bytes_read)
 		if (bytes_read == 0 && saved[fd][0] == '\0')
 			return (NULL);
 		line = ft_strdup(saved[fd]);
-		saved[fd] = strdelete(saved[fd]); // 0x8
+		saved[fd] = strdelete(saved[fd]);
 		//saved[fd] = NULL;
 		return (line);
 	}
@@ -85,14 +84,14 @@ int	readtillnewline(int fd, char **saved)
 		if (tmp == NULL)
 			return (0);
 		strdelete(saved[fd]);
-		saved[fd] = ft_strdup(tmp); //segfault saved[fd] = 0
+		saved[fd] = ft_strdup(tmp);
 		if (saved[fd] == NULL)
 			return (0);
 		strdelete(tmp);
 	}
 	return (bytes_read);
 }
-// LAATSTE EDGE CASE FD !!!!!! CHECK ALS READ FOUT GAAT
+
 char	*get_next_line(int fd)
 {
 	static char	*saved[OPEN_MAX];
