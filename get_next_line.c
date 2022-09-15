@@ -6,7 +6,7 @@
 /*   By: svrielin <svrielin@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 18:26:17 by svrielin      #+#    #+#                 */
-/*   Updated: 2022/09/15 19:30:45 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/09/15 19:41:57 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 	static char	*saved[OPEN_MAX];
 	char		*line;
 	int			bytes_read;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read())
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
 		return (NULL);
 	if (!saved[fd])
 		saved[fd] = create_empty_string();

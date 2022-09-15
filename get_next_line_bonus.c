@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line.c                                    :+:    :+:            */
+/*   get_next_line_bonus.c                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: svrielin <svrielin@student.codam.nl>         +#+                     */
+/*   By: svrielin <svrielin@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 18:26:17 by svrielin      #+#    #+#                 */
-/*   Updated: 2021/09/23 15:42:16 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/09/15 19:36:59 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	b_read = BUFFER_SIZE;
 	if (!saved[fd])
-		saved[fd] = create_empty_string();
+		*saved[fd] = '\0';
 	while (!ft_strchr(saved[fd], '\n') && b_read == BUFFER_SIZE)
 	{
 		b_read = read(fd, buffer, BUFFER_SIZE);

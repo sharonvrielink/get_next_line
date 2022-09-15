@@ -3,10 +3,10 @@
 #                                                         ::::::::             #
 #    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
-#    By: svrielin <svrielin@student.codam.nl>         +#+                      #
+#    By: svrielin <svrielin@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/02/17 11:55:20 by svrielin      #+#    #+#                  #
-#    Updated: 2022/02/24 19:50:45 by svrielin      ########   odam.nl          #
+#    Updated: 2022/09/15 19:56:38 by svrielin      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS			?=	-Wall -Wextra -Werror
 
 #################################Project_files##################################
 SRC_DIR			:=	.
-SRC_FILES		:=	get_next_line.c get_next_line_utils.c
+SRC_FILES		:=	get_next_line.c get_next_line_utils.c main.c
 OBJ_DIR			:=	./obj
 OBJ_FILES		:=	$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
@@ -33,9 +33,7 @@ all: $(NAME)
 # ar -q: quickly append the .o files of ft_printf to the archive libft.a
 # cp: copies libft.a to libftprintf.a
 $(NAME): $(OBJ_FILES)
-	ar rc $@ $^
-	ar -q $(OBJ_FILES)
-	cp $(NAME)
+	$(CC) $(CFLAGS) -D BUFFER_SIZE=1 $^ -o $(NAME)
 
 # -p: if parent dirs do not exist, generate them to accommodate 
 # gcc -c: compile but not link the file, makes the result an object file
