@@ -6,12 +6,11 @@
 /*   By: svrielin <svrielin@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 18:26:17 by svrielin      #+#    #+#                 */
-/*   Updated: 2022/09/15 19:30:14 by svrielin      ########   odam.nl         */
+/*   Updated: 2022/09/15 19:30:45 by svrielin      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h> // TODO: REMOVE
 
 char	*create_empty_string(void)
 {
